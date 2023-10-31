@@ -1,6 +1,9 @@
 #ifndef ___IMAGE
 #define ___IMAGE
+
 #include <stdint.h>
+#include <stdio.h>
+#include <pthread.h>
 
 #define Index(x,y,width,bit,bpp) y*width*bpp+bpp*x+bit
 
@@ -19,5 +22,13 @@ uint8_t getPixelValue(Image* srcImage,int x,int y,int bit,Matrix algorithm);
 void convolute(Image* srcImage,Image* destImage,Matrix algorithm);
 int Usage();
 enum KernelTypes GetKernelType(char* type);
+
+typedef struct {
+    int start;
+    int end;
+    Image* srcImage;
+    Image* destImage;
+    int type;
+} dt;
 
 #endif
